@@ -8,7 +8,8 @@ function App() {
   return (
     <div className="flex">
       <Navbar />
-      <div className="p-4">
+      <div className="p-4 bg-sky-50 main w-full">
+        <h1 className="text-5xl text-sky-900 mb-8">Dashboard</h1>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/login" element={<Dashboard />} />

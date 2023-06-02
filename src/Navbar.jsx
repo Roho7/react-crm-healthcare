@@ -15,11 +15,11 @@ import App from "./App";
 
 function Navbar() {
   return (
-    <div className="flex flex-col justify-between w-1/6 h-screen bg-sky-400 p-4 text-lg text-cyan-50">
+    <div className="flex flex-col justify-between w-1/6 h-screen bg-sky-400 p-4 text-lg text-cyan-50 fixed">
       <div>
         <h1 className="text-3xl">HealthMed</h1>
       </div>
-      <div>
+      <div className="flex flex-col gap-4">
         <Link to="/" className="flex items-center gap-4">
           <FiHome />
           Dashboard
@@ -41,7 +41,7 @@ function Navbar() {
           Finances
         </Link>
       </div>
-      <div>
+      <div className="flex flex-col gap-4">
         <Link to="/" className="flex items-center gap-4">
           <FiUser />
           Profile
