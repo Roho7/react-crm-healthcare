@@ -6,13 +6,37 @@
 
 @layer components {
   td {
-    @apply text-sky-700;
+    @apply text-sky-700 p-1;
+  }
+  .details-row {
+    @apply border-b-2 border-sky-100;
   }
   .main {
     margin-left: 16.666667%;
   }
   .container {
     @apply p-4 border bg-slate-50 border-sky-200 rounded-3xl;
+  }
+  .patient-row {
+    @apply hover:bg-sky-100 hover:cursor-pointer;
+  }
+  .row-head {
+    @apply font-semibold;
+  }
+  .bed {
+    @apply p-4 border border-sky-200 text-sky-700 rounded-xl;
+  }
+  .occupied {
+    @apply bg-sky-200;
+  }
+  button {
+    @apply bg-sky-100 hover:bg-sky-400 rounded-xl p-2;
+  }
+  .form-group {
+    @apply flex flex-col;
+  }
+  input {
+    @apply p-1 focus-visible:outline-sky-400;
   }
 }
 

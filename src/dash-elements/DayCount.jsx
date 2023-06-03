@@ -8,13 +8,14 @@ import patient from "../data/patient.json";
 const bedsLeft = (patient.length / 30) * 100;
 
 function DayCount() {
+  console.log(patient.length);
   return (
     <div className="p-4 border bg-slate-50 border-sky-200 rounded-3xl col-span-3">
       <div className="flex flex-col gap-4">
         <div className="flex gap-10">
           <CircularProgressbar
             value={bedsLeft}
-            text={Math.round(bedsLeft)}
+            text={patient.length + " Patients"}
             strokeWidth={10}
           />
           <div className="flex flex-col gap-2">

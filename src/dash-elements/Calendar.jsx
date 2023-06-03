@@ -5,10 +5,12 @@ import dayjs from "dayjs";
 import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 function Calendar() {
+  const today = new Date();
   return (
-    <div className="container col-span-2">
+    <div className="container col-span-2 flex flex-col justify-between">
+      <h1 className="text-3xl text-sky-900 font-bold mb-4">Calendar</h1>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar defaultValue={dayjs("2022-04-17")} />
+        <DateCalendar defaultValue={dayjs(today)} />
       </LocalizationProvider>
     </div>
   );

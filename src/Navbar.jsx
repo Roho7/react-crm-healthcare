@@ -28,7 +28,7 @@ function Navbar() {
           <FiCalendar />
           Appointments
         </Link>
-        <Link to="/" className="flex items-center gap-4">
+        <Link to="/reports" className="flex items-center gap-4">
           <FiFileText />
           Reports
         </Link>
