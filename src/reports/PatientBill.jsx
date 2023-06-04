@@ -2,6 +2,27 @@ import React from "react";
 import bills from "../data/bills.json";
 import patient from "../data/patient.json";
 
+const labels = [
+  {
+    id: "Patient ID",
+    rent: "Rent",
+    medicine: "Medicine Bill",
+    injection: "Injection",
+    diaper: "Diaper Bill",
+    mollisheet: "Mollisheet Bill",
+    cotton: "Cotton Bill",
+    handCare: "Hand Care",
+    doctorFees: "Doctor Fees",
+    physio: "Physiotherapy",
+    bloodTest: "Blood Test",
+    dressing: "Dressing",
+    ambulance: "Ambulance Charges",
+    oxygen: "Oxygen",
+    bonus: "Bonus",
+    others: "Others",
+  },
+];
+
 function PatientBill({ id }) {
   function calcTotal(data) {
     let total = 0;
@@ -19,6 +40,12 @@ function PatientBill({ id }) {
       <h1 className="text-xl font-bold text-sky-900 mb-2">Expenses</h1>
       <div className="flex w-full container">
         <table className="w-full">
+          <thead>
+            <tr className="details-row text-left text-sky-700">
+              <th>Bills</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
           <tbody>
             {bills
               .filter((correctBill) => {
@@ -29,8 +56,12 @@ function PatientBill({ id }) {
                 return (
                   <>
                     {Object.keys(patient).map((entry) => (
-                      <tr key={entry}>
-                        <td>{entry}</td>
+                      <tr key={entry} className="details-row">
+                        <td>
+                          {labels.map((tag) => {
+                            return tag[entry];
+                          })}
+                        </td>
                         <td>{patient[entry]}</td>
                       </tr>
                     ))}

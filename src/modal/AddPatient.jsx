@@ -73,6 +73,7 @@ function AddPatient({ closeModal, onSubmit }) {
     const newPatients = [...patients, newPatient];
     setPatients(newPatients);
     onSubmit(newPatient);
+    patient.push(newPatient);
   };
 
   return (

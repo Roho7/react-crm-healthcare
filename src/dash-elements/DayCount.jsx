@@ -34,7 +34,7 @@ function DayCount() {
           </div>
         </div>
 
-        <h1 className="text-sky-900  font-bold">Recent Admissions</h1>
+        <h1 className="text-sky-700  font-bold">Recent Admissions</h1>
         <div className="border border-sky-200 p-2 rounded-lg">
           <table className="w-full">
             <thead className="font-bold">
