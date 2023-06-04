@@ -1,0 +1,38 @@
+[
+  {
+    "id": "001",
+    "rent": 200,
+    "medicine": 50,
+    "injection": 10,
+    "diaper": 5,
+    "mollisheet": 15,
+    "cotton": 5,
+    "handCare": 8,
+    "doctorFees": 200,
+    "physio": 30,
+    "bloodTest": 20,
+    "dressing": 10,
+    "ambulance": 50,
+    "oxygen": 40,
+    "bonus": 25,
+    "others": 15
+  },
+  {
+    "id": "002",
+    "rent": "220",
+    "medicine": "60",
+    "injection": "12",
+    "diaper": "6",
+    "mollisheet": "18",
+    "cotton": "6",
+    "handCare": "10",
+    "doctorFees": "120",
+    "physio": "35",
+    "bloodTest": "25",
+    "dressing": "12",
+    "ambulance": "55",
+    "oxygen": "45",
+    "bonus": "30",
+    "others": "20"
+  }
+]

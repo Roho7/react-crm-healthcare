@@ -1,13 +1,14 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import patients from "../data/patient.json";
+import PatientBill from "./PatientBill";
 
 function PatientProfile(props) {
   const { id } = useParams();
   const patient = patients.find((patient) => patient.id === id);
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       <h1 className="text-5xl text-sky-900 mb-8">
         Patient Details <span className="text-sky-200">#{id}</span>
       </h1>
@@ -98,6 +99,7 @@ function PatientProfile(props) {
           </tbody>
         </table>
       </div>
+      <PatientBill id={id} />
     </div>
   );
 }
