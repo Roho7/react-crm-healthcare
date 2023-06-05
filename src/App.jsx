@@ -5,7 +5,6 @@ import Dashboard from "./Dashboard";
 import PatientList from "./reports/PatientList";
 import PatientProfile from "./reports/PatientProfile";
 import { Routes, Route } from "react-router-dom";
-import patient from "./data/patient.json";
 
 function App() {
   return (
