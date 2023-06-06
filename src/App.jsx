@@ -13,7 +13,7 @@ function App() {
       <div className="p-4 bg-sky-50 main w-full min-h-screen">
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/login" element={<Dashboard />} />
+
           <Route path="/reports" element={<PatientList />} />
           <Route path="/reports/patients/:id" element={<PatientProfile />} />
         </Routes>
