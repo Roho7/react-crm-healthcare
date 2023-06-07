@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "./config/firebase.js";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
+import { auth, googleAuth } from "./config/firebase.js";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -14,6 +19,23 @@ function Login() {
       console.log(err);
     }
   };
+
+  const signInWithGoogle = async () => {
+    try {
+      await signInWithPopup(auth, googleAuth);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  console.log(auth.currentUser);
+
   return (
     <div className="flex justify-center items-center h-screen">
       <div className="container flex flex-col items-center max-w-max p-10">
@@ -30,10 +52,14 @@ function Login() {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button onClick={signIn}>Login</button>
-          <button className="flex items-center gap-2">
+          <button
+            className="flex items-center gap-2"
+            onClick={signInWithGoogle}
+          >
             <FcGoogle />
             Sign in With Google
           </button>
+          <button onClick={logout}>Logout</button>
         </form>
       </div>
     </div>
