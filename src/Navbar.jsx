@@ -11,9 +11,18 @@ import {
   FiSettings,
   FiUser,
 } from "react-icons/fi";
+import { signOut } from "firebase/auth";
+import { auth } from "./config/firebase.js";
 import App from "./App";
 
 function Navbar() {
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className="flex flex-col justify-between w-1/6 h-screen bg-sky-400 p-4 text-lg text-cyan-50 fixed">
       <div>
@@ -42,7 +51,7 @@ function Navbar() {
         </Link>
       </div>
       <div className="flex flex-col gap-4">
-        <Link to="/" className="flex items-center gap-4">
+        <Link to="/" className="flex items-center gap-4" onClick={logOut}>
           <FiUser />
           Profile
         </Link>

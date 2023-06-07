@@ -5,6 +5,12 @@
 @tailwind utilities;
 
 @layer components {
+  h1 {
+    @apply text-sky-900;
+  }
+  h2 {
+    @apply text-sky-700;
+  }
   td {
     @apply text-sky-700 p-1;
   }
@@ -30,13 +36,13 @@
     @apply bg-sky-200;
   }
   button {
-    @apply bg-sky-100 hover:bg-sky-400 rounded-xl p-2;
+    @apply border border-sky-200 text-sky-700 w-full hover:bg-sky-200 transition-all ease-linear rounded-xl p-2;
   }
   .form-group {
     @apply flex flex-col;
   }
   input {
-    @apply p-1 focus-visible:outline-sky-400;
+    @apply p-2 focus-visible:outline-sky-400 w-full rounded-lg;
   }
 }
 
