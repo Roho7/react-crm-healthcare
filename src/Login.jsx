@@ -37,10 +37,10 @@ function Login() {
   console.log(auth.currentUser);
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="container flex flex-col items-center max-w-max p-10">
+    <div className="flex justify-center items-center h-screen bg-sky-50">
+      <div className="container flex flex-col items-center w-1/4 p-10">
         <h1 className="text-xl font-bold text-sky- mb-4">Login</h1>
-        <form action="" className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-4 w-full">
           <input
             type="text"
             placeholder="E-mail"
@@ -53,14 +53,14 @@ function Login() {
           />
           <button onClick={signIn}>Login</button>
           <button
-            className="flex items-center gap-2"
+            className="flex items-center justify-center gap-2"
             onClick={signInWithGoogle}
           >
             <FcGoogle />
             Sign in With Google
           </button>
           <button onClick={logout}>Logout</button>
-        </form>
+        </div>
       </div>
     </div>
   );

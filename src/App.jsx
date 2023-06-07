@@ -7,15 +7,7 @@ import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [user] = useAuthState(auth);
-  return (
-    <div>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-      </Routes>
-    </div>
-  );
+  return <div>{auth.currentUser ? <Home /> : <Login />}</div>;
 }
 
 export default App;
