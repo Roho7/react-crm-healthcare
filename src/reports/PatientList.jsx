@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import patient from "../data/patient.json";
 import AddPatient from "../modal/AddPatient";
 import { nanoid } from "nanoid";
+import { FiPlusCircle } from "react-icons/fi";
+import CurrentUser from "../components/CurrentUser";
 
 function PatientList() {
   // Patient Row Rendering
@@ -58,7 +60,14 @@ function PatientList() {
         />
       )}
       <div>
-        <h1 className="text-5xl text-sky-900 mb-8">All Patients</h1>
+        <div className="flex justify-between items-start">
+          <h1 className="text-5xl text-sky-900 mb-8">All Patients</h1>
+          <CurrentUser />
+        </div>
+        <button className="mb-2" onClick={handleModal}>
+          <FiPlusCircle />
+          <span>Add New Patient</span>
+        </button>
         <div className="container">
           <table className="w-full">
             <thead className="font-bold">
@@ -107,7 +116,6 @@ function PatientList() {
             </tbody>
           </table>
         </div>
-        <button onClick={handleModal}>Add New Patient</button>
       </div>
     </>
   );

@@ -79,6 +79,7 @@ function AddPatient({ closeModal, onSubmit }) {
   return (
     <div className="fixed bg-gray-900 bg-opacity-50 top-0 left-0 w-screen h-screen flex justify-center items-center">
       <div className="fixed bg-slate-50 p-4 rounded-xl drop-shadow-xl">
+        <h1 className="text-xl mb-4 font-bold">Add Patient Details</h1>
         <form
           action=""
           className="grid grid-cols-4 gap-4 justify-center text-sky-900"

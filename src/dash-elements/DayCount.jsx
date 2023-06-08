@@ -8,27 +8,21 @@ import patient from "../data/patient.json";
 const bedsLeft = (patient.length / 30) * 100;
 
 function DayCount() {
-  console.log(patient.length);
   return (
     <div className="p-4 border bg-slate-50 border-sky-200 rounded-3xl col-span-3">
       <div className="flex flex-col gap-4">
         <div className="flex gap-10">
-          <CircularProgressbar
-            value={bedsLeft}
-            text={patient.length + " Patients"}
-            strokeWidth={10}
-          />
           <div className="flex flex-col gap-2">
-            <p className="flex gap-1 w-1/2 items-center justify-center text-sky-700 border border-sky-400 rounded-2xl p-1 font-semibold">
+            <p className="flex gap-1 max-w-max px-4 py-1 items-center justify-center text-sky-700 border border-sky-400 rounded-full font-semibold">
               <FiShield className="text-sky-400" />
-              Premium Plan
+              Admin Permission
             </p>
 
             <h1 className="text-4xl font-bold text-sky-900">
-              Occupancy Status
+              Total Patients: {Math.round(bedsLeft)}
             </h1>
             <h1 className=" text-sky-900">
-              Latest Admission:{" "}
+              Latest Admission:
               <span className="text-fuchsia-400">14/04/23</span>
             </h1>
           </div>
@@ -54,7 +48,7 @@ function DayCount() {
                   const daysDifference = Math.ceil(
                     timeDifference / (1000 * 60 * 60 * 24)
                   );
-                  return daysDifference <= 24;
+                  return daysDifference <= 200;
                 })
                 .sort((a, b) => new Date(b.dateAdm) - new Date(a.dateAdm))
                 .map((row) => (

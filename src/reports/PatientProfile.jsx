@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import patients from "../data/patient.json";
 import PatientBill from "./PatientBill";
+import CurrentUser from "../components/CurrentUser";
 
 function PatientProfile(props) {
   const { id } = useParams();
@@ -9,9 +10,12 @@ function PatientProfile(props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className="text-5xl text-sky-900 mb-8">
-        Patient Details <span className="text-sky-200">#{id}</span>
-      </h1>
+      <div className="flex justify-between items-start">
+        <h1 className="text-5xl text-sky-900 mb-8">
+          Patient Details <span className="text-sky-200">#{id}</span>
+        </h1>
+        <CurrentUser />
+      </div>
       <h2 className="text-xl text-sky-50 mb-1 bg-sky-600 rounded-2xl p-2 max-w-max">
         Bed Number: {patient.bed}
       </h2>

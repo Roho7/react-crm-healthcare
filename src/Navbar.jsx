@@ -8,6 +8,7 @@ import {
   FiFile,
   FiFileText,
   FiHome,
+  FiLogOut,
   FiSettings,
   FiUser,
 } from "react-icons/fi";
@@ -24,40 +25,40 @@ function Navbar() {
     }
   };
   return (
-    <div className="flex flex-col justify-between w-1/6 h-screen bg-sky-400 p-4 text-lg text-cyan-50 fixed">
+    <div className="flex flex-col justify-between w-1/6 h-screen bg-sky-400 text-lg text-cyan-50 fixed">
       <div>
-        <h1 className="text-3xl">HealthMed</h1>
+        <h1 className="text-3xl m-4 font-bold text-sky-50">HealthMed+</h1>
       </div>
-      <div className="flex flex-col gap-4">
-        <Link to="/" className="flex items-center gap-4">
+      <div className="flex flex-col">
+        <Link to="/" className="navbar-link">
           <FiHome />
           Dashboard
         </Link>
-        <Link to="/" className="flex items-center gap-4">
+        <Link to="/" className="navbar-link">
           <FiCalendar />
           Appointments
         </Link>
-        <Link to="/reports" className="flex items-center gap-4">
+        <Link to="/reports" className="navbar-link">
           <FiFileText />
           Reports
         </Link>
-        <Link to="/" className="flex items-center gap-4">
+        <Link to="/" className="navbar-link">
           <FiBarChart2 />
           Progress
         </Link>
-        <Link to="/" className="flex items-center gap-4">
+        <Link to="/" className="navbar-link">
           <FiDollarSign />
           Finances
         </Link>
       </div>
-      <div className="flex flex-col gap-4">
-        <Link to="/" className="flex items-center gap-4" onClick={logOut}>
+      <div className="flex flex-col">
+        <Link to="/" className="navbar-link">
           <FiUser />
           Profile
         </Link>
-        <Link to="/" className="flex items-center gap-4">
-          <FiSettings />
-          Preferences
+        <Link to="/" className="navbar-link" onClick={logOut}>
+          <FiLogOut />
+          Log Out
         </Link>
       </div>
     </div>

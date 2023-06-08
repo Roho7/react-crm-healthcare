@@ -10,7 +10,15 @@ function Calendar() {
     <div className="container col-span-2 flex flex-col justify-between">
       <h1 className="text-3xl text-sky-900 font-bold mb-4">Calendar</h1>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar defaultValue={dayjs(today)} />
+        <DateCalendar
+          defaultValue={dayjs(today)}
+          sx={{
+            padding: "0px",
+            margin: "0px",
+            width: "100%",
+            height: "100%",
+          }}
+        />
       </LocalizationProvider>
     </div>
   );
