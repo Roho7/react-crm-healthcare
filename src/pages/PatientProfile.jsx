@@ -21,53 +21,71 @@ function PatientProfile(props) {
         .filter((patient) => patient.id === id)
         .map((patient) => {
           return (
-            <div className="flex flex-col w-full container" key={patient.id}>
+            <>
               <span className="text-xl text-sky-50 mb-1 bg-sky-600 rounded-2xl p-2 max-w-max">
-                Bed Number: {db.Bed}
+                Bed Number: {patient.Bed}
               </span>
-              <table className="w-full">
-                <thead className="font-bold">
-                  <tr>
-                    <td>Name</td>
-                    <td>Age</td>
-                    <td>Address</td>
-                    <td>Date of Birth</td>
-                    <td>Date of Admission</td>
-                    <td>Mobile Number</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>{patient.Name}</td>
-                    <td>{patient.Age}</td>
-                    <td>{patient.Address}</td>
-                    <td>{patient.DOB.toDate().toDateString()}</td>
-                    <td>{patient.DOA.toDate().toDateString()}</td>
-                    <td>{patient.Mobile}</td>
-                  </tr>
-                </tbody>
-                <thead className="font-bold">
-                  <tr>
-                    <td>Name</td>
-                    <td>Age</td>
-                    <td>Address</td>
-                    <td>Date of Birth</td>
-                    <td>Date of Admission</td>
-                    <td>Mobile Number</td>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr key={patient.id}>
-                    <td>{patient.Name}</td>
-                    <td>{patient.Age}</td>
-                    <td>{patient.Address}</td>
-                    <td>{patient.DOB.toDate().toDateString()}</td>
-                    <td>{patient.DOA.toDate().toDateString()}</td>
-                    <td>{patient.Mobile}</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+              <div className="flex w-full container" key={patient.id}>
+                <table className="w-full">
+                  <tbody>
+                    <tr className="details-row">
+                      <td className="row-head">Name</td>
+                      <td>{patient.Name}</td>
+                    </tr>
+                    <tr className="details-row">
+                      <td className="row-head">Age</td>
+                      <td>{patient.Age}</td>
+                    </tr>
+                    <tr className="details-row">
+                      <td className="row-head">DOB</td>
+                      <td>{patient.DOB.toDate().toDateString()}</td>
+                    </tr>
+                    <tr className="details-row">
+                      <td className="row-head">DOA</td>
+                      <td>{patient.DOA.toDate().toDateString()}</td>
+                    </tr>
+                    <tr className="details-row">
+                      <td className="row-head">Financial Status</td>
+                      <td>{patient.FinancialStatus}</td>
+                    </tr>
+                    <tr className="details-row">
+                      <td className="row-head">Local Guardian</td>
+                      <td>{patient.LocalGuardianName}</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table className="w-full">
+                  <tbody>
+                    <tr className="details-row">
+                      <td className="row-head">Gender</td>
+                      <td>{patient.Gender}</td>
+                    </tr>
+                    <tr className="details-row">
+                      <td className="row-head">Email</td>
+                      <td>{patient.Email}</td>
+                    </tr>
+                    <tr className="details-row">
+                      <td className="row-head">Mobile</td>
+                      <td>{patient.Mobile}</td>
+                    </tr>
+                    <tr className="details-row">
+                      <td className="row-head">Address</td>
+                      <td>{patient.Address}</td>
+                    </tr>
+                    <tr className="details-row">
+                      {" "}
+                      <td className="row-head"> Marital Status</td>
+                      <td>{patient.MaritalStatus}</td>
+                    </tr>
+                    <tr className="details-row">
+                      {" "}
+                      <td className="row-head"> Local Guardian Contact</td>
+                      <td>{patient.LocalGuardianContact}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </>
           );
         })}
 

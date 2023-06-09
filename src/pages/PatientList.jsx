@@ -46,10 +46,7 @@ function PatientList(props) {
   return (
     <>
       {modalOpen && (
-        <AddPatient
-          closeModal={() => setModalOpen(false)}
-          onSubmit={handleModalSubmit}
-        />
+        <AddPatient closeModal={() => setModalOpen(false)} data={db} />
       )}
       <div>
         <div className="flex justify-between items-start">

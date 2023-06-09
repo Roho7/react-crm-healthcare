@@ -1,33 +1,35 @@
 import React, { useState } from "react";
-import patient from "../data/patient.json";
-import { nanoid } from "nanoid";
+import { Timestamp } from "@firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../config/firebase";
 
-function AddPatient({ closeModal, onSubmit }) {
+function AddPatient({ closeModal, onSubmit, data }) {
   // ADD PATIENTS TO ARRAY
-  const [patients, setPatients] = useState(patient);
+  const [patients, setPatients] = useState();
   const [addPatient, setAddPatient] = useState({
-    id: "",
-    name: "",
-    age: "",
-    dateAdm: "",
-    dateBirth: "",
-    gender: "",
-    contact: "",
-    email: "",
-    address: "",
-    idType: "",
-    idProof: "",
-    localGuardian: "",
-    localGuardianId: "",
-    localGuardianContact: "",
-    localGuardianIdProof: "",
-    localGuardianAddress: "",
-    medicalHistory: "",
-    financialStatus: "",
-    maritalStatus: "",
-    addiction: "",
-    bed: "",
+    Name: "",
+    Age: "",
+    DOA: "",
+    DOB: "",
+    Gender: "",
+    Mobile: "",
+    Email: "",
+    Address: "",
+    IdType: "",
+    IdProof: "",
+    LocalGuardianName: "",
+    LocalGuardianIdType: "",
+    LocalGuardianIdNo: "",
+    LocalGuardianContact: "",
+    LocalGuardianAddress: "",
+    MedicalHistory: "",
+    FinancialStatus: "",
+    MaritalStatus: "",
+    Addiction: "",
+    Bed: "",
   });
+
+  console.log("addpatients", addPatient);
 
   const handleAddPatients = (e) => {
     e.preventDefault();
@@ -41,62 +43,76 @@ function AddPatient({ closeModal, onSubmit }) {
     setAddPatient(newPatient);
   };
 
-  const handleSubmitPatients = (e) => {
-    e.preventDefault();
+  // const handleSubmitPatients = (e) => {
+  //   e.preventDefault();
 
-    console.log("submitted");
+  //   console.log("submitted");
 
-    const newPatient = {
-      id: addPatient.id,
-      name: addPatient.name,
-      age: addPatient.age,
-      dateAdm: addPatient.dateAdm,
-      dateBirth: addPatient.dateBirth,
-      gender: addPatient.gender,
-      contact: addPatient.contact,
-      email: addPatient.email,
-      address: addPatient.address,
-      idType: addPatient.idType,
-      idProof: addPatient.idProof,
-      localGuardian: addPatient.localGuardian,
-      localGuardianId: addPatient.localGuardianId,
-      localGuardianContact: addPatient.localGuardianContact,
-      localGuardianIdProof: addPatient.localGuardianIdProof,
-      localGuardianAddress: addPatient.localGuardianAddress,
-      medicalHistory: addPatient.medicalHistory,
-      financialStatus: addPatient.financialStatus,
-      maritalStatus: addPatient.maritalStatus,
-      addiction: addPatient.addiction,
-      bed: addPatient.bed,
-    };
+  //   const newPatient = {
+  //     Name: addPatient.name,
+  //     Age: addPatient.age,
+  //     DOA: addPatient.dateAdm,
+  //     DOB: addPatient.dateBirth,
+  //     Gender: addPatient.gender,
+  //     Mobile: addPatient.contact,
+  //     Email: addPatient.email,
+  //     Address: addPatient.address,
+  //     IdType: addPatient.idType,
+  //     IdProof: addPatient.idProof,
+  //     LocalGuardian: addPatient.localGuardian,
+  //     LocalGuardianId: addPatient.localGuardianId,
+  //     LocalGuardianContact: addPatient.localGuardianContact,
+  //     LocalGuardianIdProof: addPatient.localGuardianIdProof,
+  //     LocalGuardianAddress: addPatient.localGuardianAddress,
+  //     MedicalHistory: addPatient.medicalHistory,
+  //     FinancialStatus: addPatient.financialStatus,
+  //     MaritalStatus: addPatient.maritalStatus,
+  //     Addiction: addPatient.addiction,
+  //     Bed: addPatient.bed,
+  //   };
 
-    const newPatients = [...patients, newPatient];
-    setPatients(newPatients);
-    onSubmit(newPatient);
-    patient.push(newPatient);
+  //   const newPatients = [...patients, newPatient];
+  //   setPatients(newPatients);
+  //   onSubmit(newPatient);
+  // };
+
+  const patientCollection = collection(db, "patient-data");
+
+  const onSubmitPatient = async () => {
+    console.log("patientName", addPatient.Name);
+    try {
+      await addDoc(patientCollection, {
+        Name: addPatient.Name,
+        Age: Number(addPatient.Age),
+        DOA: Timestamp.fromDate(new Date(addPatient.DOA)),
+        DOB: Timestamp.fromDate(new Date(addPatient.DOB)),
+        Gender: addPatient.Gender,
+        Mobile: addPatient.Mobile,
+        Email: addPatient.Email,
+        Address: addPatient.Address,
+        IdType: addPatient.IdType,
+        IdProof: addPatient.IdProof,
+        LocalGuardianName: addPatient.LocalGuardianName,
+        LocalGuardianIdType: addPatient.LocalGuardianIdType,
+        LocalGuardianIdNo: addPatient.LocalGuardianIdNo,
+        LocalGuardianContact: addPatient.LocalGuardianContact,
+        LocalGuardianAddress: addPatient.LocalGuardianAddress,
+        MedicalHistory: addPatient.MedicalHistory,
+        FinancialStatus: addPatient.FinancialStatus,
+        MaritalStatus: addPatient.MaritalStatus,
+        Addiction: addPatient.Addiction,
+        Bed: addPatient.Bed,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="fixed bg-gray-900 bg-opacity-50 top-0 left-0 w-screen h-screen flex justify-center items-center">
       <div className="fixed bg-slate-50 p-4 rounded-xl drop-shadow-xl">
         <h1 className="text-xl mb-4 font-bold">Add Patient Details</h1>
-        <form
-          action=""
-          className="grid grid-cols-4 gap-4 justify-center text-sky-900"
-          onSubmit={handleSubmitPatients}
-        >
-          <div className="form-group">
-            <label htmlFor="id" name="id">
-              ID
-            </label>
-            <input
-              type="text"
-              placeholder="ID"
-              id="id"
-              onChange={handleAddPatients}
-            />
-          </div>
-
+        <div className="grid grid-cols-4 gap-4 justify-center text-sky-900">
           <div className="form-group">
             <label htmlFor="name" name="name">
               Name
@@ -104,7 +120,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Name"
-              id="name"
+              id="Name"
               onChange={handleAddPatients}
             />
           </div>
@@ -114,9 +130,9 @@ function AddPatient({ closeModal, onSubmit }) {
               Age
             </label>
             <input
-              type="text"
+              type="number"
               placeholder="Age"
-              id="age"
+              id="Age"
               onChange={handleAddPatients}
             />
           </div>
@@ -126,9 +142,9 @@ function AddPatient({ closeModal, onSubmit }) {
               Date of Admission
             </label>
             <input
-              type="text"
+              type="date"
               placeholder="Date of Admission"
-              id="dateAdm"
+              id="DOA"
               onChange={handleAddPatients}
             />
           </div>
@@ -138,9 +154,9 @@ function AddPatient({ closeModal, onSubmit }) {
               Date of Birth
             </label>
             <input
-              type="text"
+              type="date"
               placeholder="Date of Birth"
-              id="dateBirth"
+              id="DOB"
               onChange={handleAddPatients}
             />
           </div>
@@ -152,7 +168,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Gender"
-              id="gender"
+              id="Gender"
               onChange={handleAddPatients}
             />
           </div>
@@ -164,7 +180,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Contact"
-              id="contact"
+              id="Mobile"
               onChange={handleAddPatients}
             />
           </div>
@@ -176,7 +192,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Email"
-              id="email"
+              id="Email"
               onChange={handleAddPatients}
             />
           </div>
@@ -188,7 +204,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Address"
-              id="address"
+              id="Address"
               onChange={handleAddPatients}
             />
           </div>
@@ -200,7 +216,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="ID Type"
-              id="idType"
+              id="IdType"
               onChange={handleAddPatients}
             />
           </div>
@@ -212,7 +228,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="ID Proof"
-              id="idProof"
+              id="IdNumber"
               onChange={handleAddPatients}
             />
           </div>
@@ -224,7 +240,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Local Guardian Name"
-              id="localGuardian"
+              id="LocalGuardianName"
               onChange={handleAddPatients}
             />
           </div>
@@ -236,7 +252,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Local Guardian ID"
-              id="localGuardianId"
+              id="LocalGuardianIdNo"
               onChange={handleAddPatients}
             />
           </div>
@@ -248,7 +264,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Local Guardian Contact"
-              id="localGuardianContact"
+              id="LocalGuardianContact"
               onChange={handleAddPatients}
             />
           </div>
@@ -260,7 +276,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Local Guardian ID Proof"
-              id="localGuardianIdProof"
+              id="LocalGuardianIdType"
               onChange={handleAddPatients}
             />
           </div>
@@ -272,7 +288,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Local Guardian Address"
-              id="localGuardianAddress"
+              id="LocalGuardianAddress"
               onChange={handleAddPatients}
             />
           </div>
@@ -284,7 +300,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Medical History"
-              id="medicalHistory"
+              id="MedicalHistory"
               onChange={handleAddPatients}
             />
           </div>
@@ -296,7 +312,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Financial Status"
-              id="financialStatus"
+              id="FinancialStatus"
               onChange={handleAddPatients}
             />
           </div>
@@ -308,7 +324,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Marital Status"
-              id="maritalStatus"
+              id="MaritalStatus"
               onChange={handleAddPatients}
             />
           </div>
@@ -320,7 +336,7 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Addiction"
-              id="addiction"
+              id="Addiction"
               onChange={handleAddPatients}
             />
           </div>
@@ -332,18 +348,22 @@ function AddPatient({ closeModal, onSubmit }) {
             <input
               type="text"
               placeholder="Bed"
-              id="bed"
+              id="Bed"
               onChange={handleAddPatients}
             />
           </div>
 
-          <button type="submit" className="col-span-5">
+          <button
+            type="submit"
+            className="col-span-5"
+            onClick={onSubmitPatient}
+          >
             Submit
           </button>
           <button type="" className="col-span-5" onClick={closeModal}>
             Close
           </button>
-        </form>
+        </div>
       </div>
     </div>
   );
