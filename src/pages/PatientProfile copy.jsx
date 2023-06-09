@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 import patients from "../data/patient.json";
-import PatientBill from "./PatientBill";
+import PatientBill from "../components/PatientBill";
 import CurrentUser from "../components/CurrentUser";
 
 function PatientProfile(props) {

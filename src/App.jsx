@@ -1,7 +1,6 @@
-import "./App.css";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./config/firebase.js";
-import Login from "./Login";
+import Login from "./pages/Login";
 import Home from "./Home";
 import { Routes, Route } from "react-router-dom";
 

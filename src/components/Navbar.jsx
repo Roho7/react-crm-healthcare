@@ -13,8 +13,8 @@ import {
   FiUser,
 } from "react-icons/fi";
 import { signOut } from "firebase/auth";
-import { auth } from "./config/firebase.js";
-import App from "./App";
+import { auth } from "../config/firebase.js";
+import App from "../App.jsx";
 
 function Navbar() {
   const logOut = async () => {

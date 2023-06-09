@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import DayCount from "./dash-elements/DayCount";
-import Calendar from "./dash-elements/Calendar";
-import BedCount from "./dash-elements/BedCount";
-import CurrentUser from "./components/CurrentUser";
+import DayCount from "../components/DayCount";
+import Calendar from "../components/Calendar";
+import BedCount from "../components/BedCount";
+import CurrentUser from "../components/CurrentUser";
 
 function Dashboard() {
   return (

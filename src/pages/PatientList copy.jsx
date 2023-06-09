@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import patient from "../data/patient.json";
-import AddPatient from "../modal/AddPatient";
+import AddPatient from "../components/AddPatient";
 import { nanoid } from "nanoid";
 import { FiPlusCircle } from "react-icons/fi";
 import CurrentUser from "../components/CurrentUser";

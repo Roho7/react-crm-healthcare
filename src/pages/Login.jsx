@@ -5,7 +5,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { auth, googleAuth } from "./config/firebase.js";
+import { auth, googleAuth } from "../config/firebase.js";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 function Login() {
