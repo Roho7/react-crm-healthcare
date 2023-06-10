@@ -6,7 +6,7 @@ import CurrentUser from "../components/CurrentUser";
 
 function PatientList(props) {
   const db = props.data; // ! Reference to Database prop
-  console.log(db);
+
   //* Set Checkbox component
   const [allChecked, setAllChecked] = useState(false);
   const [checked, setChecked] = useState([]);

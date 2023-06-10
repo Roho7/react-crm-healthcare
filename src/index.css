@@ -44,6 +44,9 @@
   input {
     @apply p-2 focus-visible:outline-sky-400 w-full rounded-lg;
   }
+  select {
+    @apply p-2 focus-visible:outline-sky-400 w-full rounded-lg;
+  }
   .navbar-link {
     @apply flex items-center gap-4 px-4 py-2 hover:bg-sky-700 transition-all ease-linear;
   }

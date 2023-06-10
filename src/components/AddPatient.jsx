@@ -29,7 +29,7 @@ function AddPatient({ closeModal, onSubmit, data }) {
     Bed: "",
   });
 
-  console.log("addpatients", addPatient);
+  // console.log("addpatients", addPatient);
 
   const handleAddPatients = (e) => {
     e.preventDefault();
@@ -43,43 +43,9 @@ function AddPatient({ closeModal, onSubmit, data }) {
     setAddPatient(newPatient);
   };
 
-  // const handleSubmitPatients = (e) => {
-  //   e.preventDefault();
-
-  //   console.log("submitted");
-
-  //   const newPatient = {
-  //     Name: addPatient.name,
-  //     Age: addPatient.age,
-  //     DOA: addPatient.dateAdm,
-  //     DOB: addPatient.dateBirth,
-  //     Gender: addPatient.gender,
-  //     Mobile: addPatient.contact,
-  //     Email: addPatient.email,
-  //     Address: addPatient.address,
-  //     IdType: addPatient.idType,
-  //     IdProof: addPatient.idProof,
-  //     LocalGuardian: addPatient.localGuardian,
-  //     LocalGuardianId: addPatient.localGuardianId,
-  //     LocalGuardianContact: addPatient.localGuardianContact,
-  //     LocalGuardianIdProof: addPatient.localGuardianIdProof,
-  //     LocalGuardianAddress: addPatient.localGuardianAddress,
-  //     MedicalHistory: addPatient.medicalHistory,
-  //     FinancialStatus: addPatient.financialStatus,
-  //     MaritalStatus: addPatient.maritalStatus,
-  //     Addiction: addPatient.addiction,
-  //     Bed: addPatient.bed,
-  //   };
-
-  //   const newPatients = [...patients, newPatient];
-  //   setPatients(newPatients);
-  //   onSubmit(newPatient);
-  // };
-
   const patientCollection = collection(db, "patient-data");
 
   const onSubmitPatient = async () => {
-    console.log("patientName", addPatient.Name);
     try {
       await addDoc(patientCollection, {
         Name: addPatient.Name,
@@ -106,6 +72,19 @@ function AddPatient({ closeModal, onSubmit, data }) {
     } catch (error) {
       console.log(error);
     }
+    if (addPatient.Name === "") {
+      alert("Please enter patient details");
+    } else if (addPatient.Bed === "") {
+      alert("Please select a bed");
+    } else if (data.includes(addPatient.Bed) === true) {
+      alert("This bed is occupied");
+    } else {
+      closeModal();
+    }
+
+    // !Fix
+    console.log("p", data.filter(addPatient.Bed));
+    console.log("bed", data.includes(addPatient.Bed));
   };
 
   return (
@@ -345,12 +324,47 @@ function AddPatient({ closeModal, onSubmit, data }) {
             <label htmlFor="bed" name="bed">
               Bed
             </label>
-            <input
-              type="text"
+            <select
+              type="dropdown"
               placeholder="Bed"
               id="Bed"
               onChange={handleAddPatients}
-            />
+            >
+              <optgroup label="1st Floor">
+                <option value="1A">1A</option>
+                <option value="1B">1B</option>
+                <option value="1C">1C</option>
+                <option value="1D">1D</option>
+                <option value="1E">1E</option>
+                <option value="1F">1F</option>
+                <option value="1G">1G</option>
+                <option value="1H">1H</option>
+                <option value="1I">1I</option>
+                <option value="1J">1J</option>
+              </optgroup>
+
+              <optgroup label="2nd Floor">
+                <option value="2A">2A</option>
+                <option value="2B">2B</option>
+                <option value="2C">2C</option>
+                <option value="2D">2D</option>
+                <option value="2E">2E</option>
+                <option value="2F">2F</option>
+                <option value="2G">2G</option>
+                <option value="2H">2H</option>
+                <option value="2I">2I</option>
+                <option value="2J">2J</option>
+              </optgroup>
+
+              <optgroup label="3rd Floor">
+                <option value="3A">3A</option>
+                <option value="3B">3B</option>
+                <option value="3C">3C</option>
+                <option value="3D">3D</option>
+                <option value="3E">3E</option>
+                <option value="3F">3F</option>
+              </optgroup>
+            </select>
           </div>
 
           <button
