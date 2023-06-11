@@ -9,7 +9,7 @@ import { db } from "./config/firebase";
 import { getDocs, collection } from "@firebase/firestore";
 
 function Home() {
-  // ! Database Connection -----
+  // ! Database Connection Patients -----
   const [patientData, setPatientData] = useState([]);
 
   const patientCollection = collection(db, "patient-data");
@@ -35,7 +35,7 @@ function Home() {
       <Navbar />
       <div className="p-4 bg-sky-50 main w-full min-h-screen">
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard data={patientData} />} />
           <Route path="/reports" element={<PatientList data={patientData} />} />
           <Route
             path="/reports/patients/:id"

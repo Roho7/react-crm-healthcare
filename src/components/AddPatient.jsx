@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Timestamp } from "@firebase/firestore";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, updateDoc } from "firebase/firestore";
 import { db } from "../config/firebase";
 
 function AddPatient({ closeModal, onSubmit, data }) {
   // ADD PATIENTS TO ARRAY
-  const [patients, setPatients] = useState();
+  // const [patients, setPatients] = useState();
   const [addPatient, setAddPatient] = useState({
     Name: "",
     Age: "",
@@ -28,8 +28,6 @@ function AddPatient({ closeModal, onSubmit, data }) {
     Addiction: "",
     Bed: "",
   });
-
-  // console.log("addpatients", addPatient);
 
   const handleAddPatients = (e) => {
     e.preventDefault();
@@ -76,15 +74,11 @@ function AddPatient({ closeModal, onSubmit, data }) {
       alert("Please enter patient details");
     } else if (addPatient.Bed === "") {
       alert("Please select a bed");
-    } else if (data.includes(addPatient.Bed) === true) {
+    } else if (data.some((bed) => bed.Bed === addPatient.Bed)) {
       alert("This bed is occupied");
     } else {
       closeModal();
     }
-
-    // !Fix
-    console.log("p", data.filter(addPatient.Bed));
-    console.log("bed", data.includes(addPatient.Bed));
   };
 
   return (

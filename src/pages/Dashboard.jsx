@@ -1,10 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DayCount from "../components/DayCount";
 import Calendar from "../components/Calendar";
 import BedCount from "../components/BedCount";
 import CurrentUser from "../components/CurrentUser";
+import AddBeds from "../components/AddBeds";
+import { db } from "../config/firebase";
+import { getDocs, collection } from "@firebase/firestore";
 
-function Dashboard() {
+function Dashboard(data) {
+  // !Beds Database Connection
+  // * Set the Beds data in an array
+
+  const [beds, setBeds] = useState([]);
+
+  // *Ged the Beds Data
+  const bedsCollection = collection(db, "bed-data");
+
+  useEffect(() => {
+    const getBedData = async () => {
+      try {
+        const data = await getDocs(bedsCollection);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setBeds(filteredData);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getBedData();
+  }, []);
+
   return (
     <div>
       <div className="flex justify-between items-start">
@@ -15,7 +42,8 @@ function Dashboard() {
       <div className="grid grid-cols-5 grid-flow-row gap-2">
         <DayCount />
         <Calendar />
-        <BedCount />
+        <BedCount data={beds} patient={data} />
+        <AddBeds data={bedsCollection} />
       </div>
     </div>
   );
