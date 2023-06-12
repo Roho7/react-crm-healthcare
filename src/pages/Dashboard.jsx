@@ -39,9 +39,9 @@ function Dashboard(data) {
         <CurrentUser />
       </div>
 
-      <div className="grid grid-cols-5 grid-flow-row gap-2">
-        <DayCount patient={data} />
-        <Calendar />
+      <div className="grid grid-cols-5 gap-2">
+        <DayCount patient={data} bed={beds} />
+        <Calendar patient={data} />
         <BedCount data={beds} patient={data} />
         <AddBeds data={bedsCollection} />
       </div>

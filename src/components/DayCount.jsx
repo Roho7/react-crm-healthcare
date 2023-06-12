@@ -1,16 +1,19 @@
 import React from "react";
 import { FiShield } from "react-icons/fi";
-import { CircularProgressbar } from "react-circular-progressbar";
+import { Circle } from "rc-progress";
 import "react-circular-progressbar/dist/styles.css";
 
 function DayCount(props) {
   const patients = props.patient.data;
-  const bedsLeft = (patients.length / 30) * 100;
+  const bedData = props.bed;
+  console.log(patients.length);
+  console.log(bedData.length);
+  console.log("perc", Math.round((patients.length / bedData.length) * 100));
 
   return (
     <div className="p-4 border bg-slate-50 border-sky-200 rounded-3xl col-span-3">
       <div className="flex flex-col gap-4">
-        <div className="flex gap-10">
+        <div className="flex justify-between">
           <div className="flex flex-col gap-2">
             <p className="flex gap-1 max-w-max px-4 py-1 items-center justify-center text-sky-700 border border-sky-400 rounded-full font-semibold">
               <FiShield className="text-sky-400" />
@@ -24,6 +27,22 @@ function DayCount(props) {
               Latest Admission:
               <span className="text-fuchsia-400">14/06/2023</span>
             </h1>
+          </div>
+
+          <div className="flex flex-col items-center justify-center max-w-max">
+            <Circle
+              percent="10"
+              strokeWidth="4"
+              strokeColor="rgb(56 189 248)"
+              trailColor="rgba(186 230 253)"
+              trailWidth={4}
+              className="w-3/4 -mb-36"
+              gapDegree={180}
+            ></Circle>
+            <div className="text-sky-400 text-center font-bold">
+              <p>Occupancy Status</p>
+              {Math.round((patients.length / bedData.length) * 100) + "%"}
+            </div>
           </div>
         </div>
 
