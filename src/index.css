@@ -30,7 +30,7 @@
     @apply font-semibold;
   }
   .bed {
-    @apply p-4 border border-sky-200 w-20 text-sky-700 rounded-xl;
+    @apply p-4 border border-sky-200 w-20 text-sky-700 rounded-xl relative;
   }
   .occupied {
     @apply bg-sky-200;
@@ -54,7 +54,7 @@
     @apply text-sky-700 font-bold;
   }
   .bed-hover {
-    @apply bg-sky-100 p-2 rounded-md text-sky-400 absolute -my-12 hidden;
+    @apply bg-sky-100 p-2 rounded-lg text-sky-700 text-center absolute -my-14 -mx-4 scale-0 w-full text-sm drop-shadow-lg transition-all duration-75;
   }
 }
 
