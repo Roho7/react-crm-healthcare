@@ -61,13 +61,7 @@ function PatientList(props) {
           <table className="w-full">
             <thead className="font-bold">
               <tr>
-                <td>
-                  <input
-                    type="checkbox"
-                    checked={allChecked}
-                    onChange={checkAll}
-                  />
-                </td>
+                <td>Bed</td>
                 <td>Patient Name</td>
                 <td>Age</td>
                 <td>Gender</td>
@@ -85,14 +79,7 @@ function PatientList(props) {
                     key={patient.id}
                     onClick={() => patientProfileLink(patient.id)}
                   >
-                    <td>
-                      <input
-                        type="checkbox"
-                        id="checkbox"
-                        checked={checked.includes(patient.id)}
-                        onChange={(e) => check(e, patient.id)}
-                      />
-                    </td>
+                    <td>{patient.Bed} </td>
                     <td>{patient.Name} </td>
                     <td>{patient.Age} </td>
                     <td>{patient.Gender} </td>

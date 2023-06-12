@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { setDoc, doc } from "@firebase/firestore";
-
+import { FaBed } from "react-icons/fa";
 function AddBeds(props) {
   // * Create an empty State object
   const [addBeds, setAddBeds] = useState({
@@ -37,19 +37,24 @@ function AddBeds(props) {
   };
 
   return (
-    <div className="container">
-      <h1>Add Beds</h1>
+    <div className="container flex flex-col gap-2 col-span-2">
+      <h1 className="mb-4 font-bold text-3xl flex items-center gap-4">
+        Add Beds <FaBed />
+      </h1>
+      <label htmlFor="Name">Bed Name</label>
       <input
         type="text"
         placeholder="Bed Name"
         id="Name"
         onChange={handleAddBeds}
       />
+      <label htmlFor="Occupied">Occupied</label>
       <select
         name="occupied"
         id="Occupied"
         placeholder="Occupied?"
         onChange={handleAddBeds}
+        className="text-sky-700"
       >
         <option value="true">Yes</option>
         <option value="false" selected>

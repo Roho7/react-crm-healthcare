@@ -1,30 +1,52 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import PatientBill from "../components/PatientBill";
 import CurrentUser from "../components/CurrentUser";
+import { deleteDoc, doc } from "@firebase/firestore";
+import { FiTrash } from "react-icons/fi";
+import { db } from "../config/firebase";
 
 function PatientProfile(props) {
-  const db = props.data;
+  const data = props.data;
 
   const { id } = useParams();
+
+  // *Delete Patient Profile
+  const navigate = useNavigate();
+  const handleDelete = async (id) => {
+    const profile = doc(db, "patient-data", id);
+    console.log("deted");
+    try {
+      await deleteDoc(profile);
+    } catch (err) {
+      console.log(err);
+    }
+    navigate("/reports");
+  };
 
   return (
     <div className="flex flex-col gap-4">
       <div className="flex justify-between items-start">
-        <h1 className="text-5xl text-sky-900 mb-8">
-          Patient Details <span className="text-sky-200">#{id}</span>
-        </h1>
+        <h1 className="text-5xl text-sky-900 mb-8">Patient Details</h1>
         <CurrentUser />
       </div>
 
-      {db
+      {data
         .filter((patient) => patient.id === id)
         .map((patient) => {
           return (
             <>
-              <span className="text-xl text-sky-50 mb-1 bg-sky-600 rounded-2xl p-2 max-w-max">
-                Bed Number: {patient.Bed}
-              </span>
+              <div className="flex justify-between">
+                <span className="text-xl text-sky-50 mb-1 bg-sky-600 rounded-2xl p-2 max-w-max">
+                  Bed Number: {patient.Bed}
+                </span>
+                <button
+                  className="text-red-500 hover:bg-red-200 border-red-300 w-1/6"
+                  onClick={() => handleDelete(patient.id)}
+                >
+                  Delete Profile <FiTrash />
+                </button>
+              </div>
               <div className="flex w-full container" key={patient.id}>
                 <table className="w-full">
                   <tbody>

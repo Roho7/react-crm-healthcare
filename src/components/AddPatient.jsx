@@ -45,39 +45,42 @@ function AddPatient({ closeModal, onSubmit, data }) {
 
   const onSubmitPatient = async () => {
     try {
-      await addDoc(patientCollection, {
-        Name: addPatient.Name,
-        Age: Number(addPatient.Age),
-        DOA: Timestamp.fromDate(new Date(addPatient.DOA)),
-        DOB: Timestamp.fromDate(new Date(addPatient.DOB)),
-        Gender: addPatient.Gender,
-        Mobile: addPatient.Mobile,
-        Email: addPatient.Email,
-        Address: addPatient.Address,
-        IdType: addPatient.IdType,
-        IdProof: addPatient.IdProof,
-        LocalGuardianName: addPatient.LocalGuardianName,
-        LocalGuardianIdType: addPatient.LocalGuardianIdType,
-        LocalGuardianIdNo: addPatient.LocalGuardianIdNo,
-        LocalGuardianContact: addPatient.LocalGuardianContact,
-        LocalGuardianAddress: addPatient.LocalGuardianAddress,
-        MedicalHistory: addPatient.MedicalHistory,
-        FinancialStatus: addPatient.FinancialStatus,
-        MaritalStatus: addPatient.MaritalStatus,
-        Addiction: addPatient.Addiction,
-        Bed: addPatient.Bed,
-      });
+      if (addPatient.Name === "") {
+        alert("Please enter patient details");
+        return;
+      } else if (addPatient.Bed === "") {
+        alert("Please select a bed");
+        return;
+      } else if (data.some((bed) => bed.Bed === addPatient.Bed)) {
+        alert("This bed is occupied");
+        return;
+      } else {
+        await addDoc(patientCollection, {
+          Name: addPatient.Name,
+          Age: Number(addPatient.Age),
+          DOA: Timestamp.fromDate(new Date(addPatient.DOA)),
+          DOB: Timestamp.fromDate(new Date(addPatient.DOB)),
+          Gender: addPatient.Gender,
+          Mobile: addPatient.Mobile,
+          Email: addPatient.Email,
+          Address: addPatient.Address,
+          IdType: addPatient.IdType,
+          IdProof: addPatient.IdProof,
+          LocalGuardianName: addPatient.LocalGuardianName,
+          LocalGuardianIdType: addPatient.LocalGuardianIdType,
+          LocalGuardianIdNo: addPatient.LocalGuardianIdNo,
+          LocalGuardianContact: addPatient.LocalGuardianContact,
+          LocalGuardianAddress: addPatient.LocalGuardianAddress,
+          MedicalHistory: addPatient.MedicalHistory,
+          FinancialStatus: addPatient.FinancialStatus,
+          MaritalStatus: addPatient.MaritalStatus,
+          Addiction: addPatient.Addiction,
+          Bed: addPatient.Bed,
+        });
+        closeModal();
+      }
     } catch (error) {
       console.log(error);
-    }
-    if (addPatient.Name === "") {
-      alert("Please enter patient details");
-    } else if (addPatient.Bed === "") {
-      alert("Please select a bed");
-    } else if (data.some((bed) => bed.Bed === addPatient.Bed)) {
-      alert("This bed is occupied");
-    } else {
-      closeModal();
     }
   };
 

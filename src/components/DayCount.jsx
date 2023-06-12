@@ -1,13 +1,12 @@
 import React from "react";
 import { FiShield } from "react-icons/fi";
-
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
-import patient from "../data/patient.json";
 
-const bedsLeft = (patient.length / 30) * 100;
+function DayCount(props) {
+  const patients = props.patient.data;
+  const bedsLeft = (patients.length / 30) * 100;
 
-function DayCount() {
   return (
     <div className="p-4 border bg-slate-50 border-sky-200 rounded-3xl col-span-3">
       <div className="flex flex-col gap-4">
@@ -19,11 +18,11 @@ function DayCount() {
             </p>
 
             <h1 className="text-4xl font-bold text-sky-900">
-              Total Patients: {Math.round(bedsLeft)}
+              Total Patients: {patients.length}
             </h1>
             <h1 className=" text-sky-900">
               Latest Admission:
-              <span className="text-fuchsia-400">14/04/23</span>
+              <span className="text-fuchsia-400">14/06/2023</span>
             </h1>
           </div>
         </div>
@@ -40,28 +39,25 @@ function DayCount() {
               </tr>
             </thead>
             <tbody>
-              {patient
+              {patients
                 .filter((row) => {
                   const today = new Date();
-                  const dateAdm = new Date(row.dateAdm);
+                  const dateAdm = row.DOA.toDate();
                   const timeDifference = Math.abs(today - dateAdm);
                   const daysDifference = Math.ceil(
                     timeDifference / (1000 * 60 * 60 * 24)
                   );
-                  return daysDifference <= 200;
+                  return daysDifference < 5;
                 })
                 .sort((a, b) => new Date(b.dateAdm) - new Date(a.dateAdm))
                 .map((row) => (
-                  <tr
-                    key={row.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
+                  <tr key={row.Name}>
                     <td component="th" scope="row">
-                      {row.name}
+                      {row.Name}
                     </td>
-                    <td align="right">{row.dateAdm}</td>
-                    <td align="right">{row.gender}</td>
-                    <td align="right">{row.age}</td>
+                    <td align="right">{row.DOA.toDate().toDateString()}</td>
+                    <td align="right">{row.Gender}</td>
+                    <td align="right">{row.Age}</td>
                   </tr>
                 ))}
             </tbody>

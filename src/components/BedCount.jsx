@@ -1,9 +1,14 @@
 import React from "react";
 
+const handleBedHover = (e) => {
+  const bedHover = document.querySelector(".bed-hover");
+  bedHover.style.display = "block";
+  console.log("bedhover");
+};
+
 function BedCount(props) {
   const beds = props.data;
   const patient = props.patient.data;
-  console.log(patient);
 
   return (
     <div className="container col-span-3">
@@ -12,41 +17,27 @@ function BedCount(props) {
         <h2 className="font-bold text-sky-700">First Floor</h2>
         <div className=" flex gap-4 flex-wrap">
           {beds.map((bed) => {
-            console.log(patient.some((item) => item.Bed === bed.Name));
+            // console.log("name", patient.data.Name);
             return (
-              <div
-                key={bed.id}
-                className={
-                  patient.some((item) => item.Bed === bed.Name)
-                    ? "bed occupied"
-                    : "bed"
-                }
-              >
-                {bed.Name}
+              <div key={bed.id} className="relative">
+                <div className="bed-hover">
+                  {patient
+                    .filter((item) => item.Bed === bed.Name)
+                    .map((e) => e.Name)}
+                </div>
+                <div
+                  onClick={handleBedHover}
+                  className={
+                    patient.some((item) => item.Bed === bed.Name)
+                      ? "bed occupied"
+                      : "bed"
+                  }
+                >
+                  {bed.Name}
+                </div>
               </div>
             );
           })}
-          {/* {beds
-            .filter((floor) => {
-              return floor.floor === 1;
-            })
-            .map((bed) => {
-              return (
-                <div>
-                  <div
-                    key={bed.key}
-                    className={
-                      patients.some((item) => item.bed === bed.key)
-                        ? "bed occupied"
-                        : "bed"
-                    }
-                    id="1"
-                  >
-                    {bed.key}
-                  </div>
-                </div>
-              );
-            })} */}
         </div>
       </div>
     </div>

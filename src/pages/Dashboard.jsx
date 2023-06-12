@@ -40,7 +40,7 @@ function Dashboard(data) {
       </div>
 
       <div className="grid grid-cols-5 grid-flow-row gap-2">
-        <DayCount />
+        <DayCount patient={data} />
         <Calendar />
         <BedCount data={beds} patient={data} />
         <AddBeds data={bedsCollection} />

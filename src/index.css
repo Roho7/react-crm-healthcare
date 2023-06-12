@@ -50,6 +50,12 @@
   .navbar-link {
     @apply flex items-center gap-4 px-4 py-2 hover:bg-sky-700 transition-all ease-linear;
   }
+  label {
+    @apply text-sky-700 font-bold;
+  }
+  .bed-hover {
+    @apply bg-sky-100 p-2 rounded-md text-sky-400 absolute -my-12 hidden;
+  }
 }
 
 @layer base {
