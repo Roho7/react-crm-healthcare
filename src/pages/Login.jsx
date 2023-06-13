@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 import { FcGoogle } from "react-icons/fc";
-import {
-  createUserWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-} from "firebase/auth";
-import { auth, googleAuth } from "../config/firebase.js";
+import { useAuth } from "../context/AuthContext.jsx";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, signInWithGoogle } = useAuth();
 
-  const signIn = async () => {
+  const navigate = useNavigate();
+
+  const handleSignIn = async (e) => {
+    e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await login(email, password);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
   };
 
-  const signInWithGoogle = async () => {
+  const handleGoogle = async (e) => {
+    e.preventDefault();
     try {
-      await signInWithPopup(auth, googleAuth);
+      await signInWithGoogle(email, password);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
@@ -43,11 +46,17 @@ function Login() {
             placeholder="Password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button onClick={signIn}>Login</button>
-          <button onClick={signInWithGoogle}>
+          <button onClick={handleSignIn}>Login</button>
+          <button onClick={handleGoogle}>
             <FcGoogle />
             Sign in With Google
           </button>
+          <span className="text-sky-700">
+            Don't have an account?{" "}
+            <Link to="/signup" className="hover:text-fuchsia-500">
+              Sign Up
+            </Link>
+          </span>
         </div>
       </div>
     </div>

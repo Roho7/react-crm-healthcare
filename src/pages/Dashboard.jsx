@@ -36,7 +36,7 @@ function Dashboard(data) {
     <div>
       <div className="flex justify-between items-start">
         <h1 className="text-5xl mb-8">Dashboard</h1>
-        <CurrentUser />
+        {/* <CurrentUser /> */}
       </div>
 
       <div className="grid grid-cols-5 gap-2">

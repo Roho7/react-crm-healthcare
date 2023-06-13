@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import PatientList from "./pages/PatientList";
@@ -35,30 +34,19 @@ function Home() {
   }, []);
 
   return (
-    <>
-      {loading ? (
-        <div className="w-screen h-screen bg-black absolute text-white">
-          Loading
-        </div>
-      ) : (
-        <div className="flex">
-          <Navbar />
-          <div className="p-4 bg-sky-50 main w-full min-h-screen">
-            <Routes>
-              <Route path="/" element={<Dashboard data={patientData} />} />
-              <Route
-                path="/reports"
-                element={<PatientList data={patientData} />}
-              />
-              <Route
-                path="/reports/patients/:id"
-                element={<PatientProfile data={patientData} />}
-              />
-            </Routes>
-          </div>
-        </div>
-      )}
-    </>
+    <div className="flex">
+      <Navbar />
+      <div className="p-4 bg-sky-50 main w-full min-h-screen">
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard data={patientData} />} />
+          <Route path="/reports" element={<PatientList data={patientData} />} />
+          <Routes
+            path="/reports/patients/:id"
+            element={<PatientProfile data={patientData} />}
+          />
+        </Routes>
+      </div>
+    </div>
   );
 }
 

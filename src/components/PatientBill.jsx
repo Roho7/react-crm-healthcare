@@ -1,6 +1,4 @@
 import React from "react";
-import bills from "../data/bills.json";
-import patient from "../data/patient.json";
 
 const labels = [
   {
