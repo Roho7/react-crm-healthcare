@@ -54,7 +54,7 @@
     @apply text-sky-700 font-bold;
   }
   .bed-hover {
-    @apply bg-sky-100 p-2 rounded-lg text-sky-700 text-center absolute -my-14 scale-0 max-w-max text-sm drop-shadow-lg transition-all duration-75;
+    @apply bg-sky-700 p-2 rounded-xl text-sky-100 text-center absolute -my-14 scale-0 max-w-max text-sm drop-shadow-xl transition-all duration-75;
   }
   .imp-date-box {
     @apply p-4 border border-sky-200 rounded-xl flex justify-between items-center;
