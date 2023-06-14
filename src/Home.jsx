@@ -8,6 +8,7 @@ import { db } from "./config/firebase";
 import { getDocs, collection } from "@firebase/firestore";
 import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
+import ReactLoading from "react-loading";
 
 function Home() {
   const [loading, setLoading] = useState(false);
@@ -36,21 +37,34 @@ function Home() {
   }, []);
 
   return (
-    <div className="flex">
-      <Navbar />
-      <div className="p-4 bg-sky-50 main w-full min-h-screen">
-        {/* <Dashboard data={patientData} /> */}
-
-        <Routes>
-          <Route path="/" element={<Dashboard data={patientData} />} />
-          <Route path="/reports" element={<PatientList data={patientData} />} />
-          <Route
-            path="/reports/patients/:id"
-            element={<PatientProfile data={patientData} />}
-          />
-        </Routes>
+    <>
+      {/* {loading && (
+        <div className="absolute w-screen h-screen bg-sky-100 text-sky-900 text-9xl z-10 flex justify-center items-center">
+          Loading
+        </div>
+      )} */}
+      {loading && (
+        <div className="absolute w-screen h-screen text-9xl z-10 flex justify-center items-center">
+          <ReactLoading type="spin" color="rgb(56 189 248)" />
+        </div>
+      )}
+      <div className="flex">
+        <Navbar />
+        <div className="p-4 bg-sky-50 main w-full min-h-screen">
+          <Routes>
+            <Route path="/" element={<Dashboard data={patientData} />} />
+            <Route
+              path="/reports"
+              element={<PatientList data={patientData} />}
+            />
+            <Route
+              path="/reports/patients/:id"
+              element={<PatientProfile data={patientData} />}
+            />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

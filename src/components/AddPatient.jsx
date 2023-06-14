@@ -88,7 +88,7 @@ function AddPatient({ closeModal, data }) {
 
   return (
     <div className="fixed bg-gray-900 bg-opacity-50 top-0 left-0 w-screen h-screen flex justify-center items-center">
-      <div className="fixed bg-slate-50 p-4 rounded-xl drop-shadow-xl">
+      <div className="fixed container w-5/6 drop-shadow-xl">
         <h1 className="text-xl mb-4 font-bold">Add Patient Details</h1>
         <div className="grid grid-cols-4 gap-4 justify-center text-sky-900">
           <div className="form-group">
@@ -365,17 +365,18 @@ function AddPatient({ closeModal, data }) {
               </optgroup>
             </select>
           </div>
-
-          <button
-            type="submit"
-            className="col-span-5"
-            onClick={onSubmitPatient}
-          >
-            Submit
-          </button>
-          <button type="" className="col-span-5" onClick={closeModal}>
-            Close
-          </button>
+          <div className="btn-group col-span-4">
+            <button type="submit" className="" onClick={onSubmitPatient}>
+              Submit
+            </button>
+            <button
+              type=""
+              className="border border-red-200 text-red-500 hover:bg-red-200"
+              onClick={closeModal}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>

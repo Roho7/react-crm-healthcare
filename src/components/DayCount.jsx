@@ -6,9 +6,6 @@ import "react-circular-progressbar/dist/styles.css";
 function DayCount(props) {
   const patients = props.patient.data;
   const bedData = props.bed;
-  console.log(patients.length);
-  console.log(bedData.length);
-  console.log("perc", Math.round((patients.length / bedData.length) * 100));
 
   return (
     <div className="p-4 border bg-slate-50 border-sky-200 rounded-3xl col-span-3">
@@ -36,7 +33,7 @@ function DayCount(props) {
               strokeColor="rgb(56 189 248)"
               trailColor="rgba(186 230 253)"
               trailWidth={4}
-              className="w-3/4 -mb-36"
+              className="w-3/4 -mb-40"
               gapDegree={180}
             ></Circle>
             <div className="text-sky-400 text-center font-bold">

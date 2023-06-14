@@ -1,6 +1,8 @@
 import React from "react";
 import { FiCalendar } from "react-icons/fi";
 
+import { BsFilePersonFill } from "react-icons/bs";
+
 function Calendar(props) {
   const today = new Date();
   const patients = props.patient.data;
@@ -14,10 +16,16 @@ function Calendar(props) {
           return (
             <div className="imp-date-box mb-2" key={patient.id}>
               <div>
-                <p className="font-bold text-sky-900">New Patient</p>
-                <p className=" text-sky-700">{patient.Name} was admitted</p>
+                <span className="font-bold text-sky-100 flex items-center gap-2">
+                  New Patient
+                  <BsFilePersonFill />
+                </span>
+                <p className=" text-sky-200">
+                  <span className=" text-fuchsia-200">{patient.Name} </span> was
+                  admitted
+                </p>
               </div>
-              <p className="font-bold text-fuchsia-400">
+              <p className="font-bold text-sky-100">
                 {patient.DOA.toDate().toDateString()}
               </p>
             </div>

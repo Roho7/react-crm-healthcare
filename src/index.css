@@ -38,6 +38,9 @@
   button {
     @apply border border-sky-200 text-sky-700 w-full hover:bg-sky-200 transition-all ease-linear rounded-xl p-2 flex justify-center items-center gap-2 font-bold;
   }
+  .btn-group {
+    @apply flex  gap-2 w-full;
+  }
   .form-group {
     @apply flex flex-col;
   }
@@ -57,7 +60,7 @@
     @apply bg-sky-700 p-2 rounded-xl text-sky-100 text-center absolute -my-14 scale-0 max-w-max text-sm drop-shadow-xl transition-all duration-75;
   }
   .imp-date-box {
-    @apply p-4 border border-sky-200 rounded-xl flex justify-between items-center;
+    @apply p-4 border border-sky-200 bg-gradient-to-r from-sky-700 to-sky-300 rounded-xl flex justify-between items-center;
   }
   *::-webkit-scrollbar {
     width: 8px;
