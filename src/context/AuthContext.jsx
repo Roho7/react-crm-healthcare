@@ -1,4 +1,4 @@
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -11,9 +11,22 @@ import { auth, googleAuth } from "../config/firebase";
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUserState, setCurrentUserState] = useState();
 
   // * FUNCTIONS *
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      setCurrentUserState(user);
+    });
+  });
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     setCurrentUser(user);
+  //   });
+  //   return unsubscribe;
+  // }, []);
 
   const signup = async (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -32,27 +45,15 @@ export function AuthProvider({ children }) {
     }
   };
 
-  onAuthStateChanged((user) => {
-    setCurrentUser(user);
-  });
-
-  // useEffect(() => {
-  //   const unsubscribe = auth.onAuthStateChanged((user) => {
-  //     setCurrentUser(user);
-  //   });
-  //   return unsubscribe;
-  // }, []);
-
-  console.log(currentUser);
-
   const value = {
-    currentUser,
+    currentUserState,
     signup,
     login,
     signout,
     signInWithGoogle,
   };
 
+  console.log("user", currentUserState);
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 

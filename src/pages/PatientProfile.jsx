@@ -130,7 +130,7 @@ function PatientProfile(props) {
             );
           })}
 
-        <PatientBill id={id} />
+        {/* <PatientBill id={id} /> */}
       </div>
     </>
   );

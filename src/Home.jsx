@@ -3,9 +3,11 @@ import Navbar from "./components/Navbar";
 import Dashboard from "./pages/Dashboard";
 import PatientList from "./pages/PatientList";
 import PatientProfile from "./pages/PatientProfile";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { db } from "./config/firebase";
 import { getDocs, collection } from "@firebase/firestore";
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 
 function Home() {
   const [loading, setLoading] = useState(false);
@@ -37,10 +39,12 @@ function Home() {
     <div className="flex">
       <Navbar />
       <div className="p-4 bg-sky-50 main w-full min-h-screen">
+        {/* <Dashboard data={patientData} /> */}
+
         <Routes>
-          <Route path="/dashboard" element={<Dashboard data={patientData} />} />
+          <Route path="/" element={<Dashboard data={patientData} />} />
           <Route path="/reports" element={<PatientList data={patientData} />} />
-          <Routes
+          <Route
             path="/reports/patients/:id"
             element={<PatientProfile data={patientData} />}
           />

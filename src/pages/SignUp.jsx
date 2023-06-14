@@ -7,16 +7,28 @@ function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [conPassword, setConPassword] = useState("");
+  const [error, setError] = useState("");
   const { signup, signInWithGoogle } = useAuth();
 
   const navigate = useNavigate();
 
-  const handleSignUp = (e) => {
-    if (password != conPassword) {
-      alert("Passwords do not match");
+  const handleSignUp = async (e) => {
+    if (document.getElementById("email").value === "") {
+      document.getElementById("email").classList.add("border-red-500");
+      setError("Please enter a valid email");
+    } else if (document.getElementById("password").value === "") {
+      document.getElementById("password").classList.add("border-red-500");
+      setError("Please enter a password");
+    } else if (password != conPassword) {
+      document.getElementById("conpassword").classList.add("border-red-500");
+      setError("Passwords do not match");
     } else {
-      signup(email, password);
-      navigate("/");
+      try {
+        await signup(email, password);
+        navigate("/");
+      } catch (err) {
+        console.log(err);
+      }
     }
   };
   const handleGoogle = (e) => {
@@ -45,22 +57,29 @@ function SignUp() {
       <h1 className="text-5xl mt-4 font-bold top-10 ">HealthMed+</h1>
       <div className="container flex flex-col items-center max-w-sm p-10 z-10">
         <h1 className="text-xl font-bold text-sky- mb-4">Sign Up</h1>
+
         <div className="flex flex-col items-center gap-4 w-full">
           <input
             type="text"
             placeholder="E-mail"
+            id="email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
+            id="password"
             onChange={(e) => setPassword(e.target.value)}
           />
           <input
             type="password"
+            id="conpassword"
             placeholder="Confirm Password"
             onChange={(e) => setConPassword(e.target.value)}
           />
+          <div className=" text-red-500 font-bold">
+            <span id="err-msg">{error}</span>
+          </div>
           <button onClick={handleSignUp}>Sign Up</button>
           <button onClick={handleGoogle}>
             <FcGoogle />

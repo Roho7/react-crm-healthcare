@@ -42,7 +42,7 @@
     @apply flex flex-col;
   }
   input {
-    @apply p-2 focus-visible:outline-sky-400 w-full rounded-lg;
+    @apply p-2 focus-visible:outline-sky-400 w-full rounded-lg border-2;
   }
   select {
     @apply p-2 focus-visible:outline-sky-400 w-full rounded-lg;

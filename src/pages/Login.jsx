@@ -7,17 +7,30 @@ import { useAuth } from "../context/AuthContext.jsx";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
   const { login, signInWithGoogle } = useAuth();
 
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-    try {
-      await login(email, password);
-      navigate("/");
-    } catch (err) {
-      console.log(err);
+    if (document.getElementById("email").value === "") {
+      document.getElementById("email").classList.add("border-red-500");
+      setError("Please enter your Email");
+      return;
+    } else if (document.getElementById("password").value === "") {
+      document.getElementById("password").classList.add("border-red-500");
+      setError("Please enter password");
+      return;
+    } else {
+      try {
+        await login(email, password);
+        navigate("/");
+      } catch (err) {
+        console.log(err);
+        return;
+      }
     }
   };
 
@@ -27,6 +40,8 @@ function Login() {
       await signInWithGoogle(email, password);
     } catch (err) {
       console.error(err);
+    } finally {
+      navigate("/");
     }
   };
 
@@ -39,13 +54,18 @@ function Login() {
           <input
             type="text"
             placeholder="E-mail"
+            id="email"
             onChange={(e) => setEmail(e.target.value)}
           />
           <input
             type="password"
             placeholder="Password"
+            id="password"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div className=" text-red-500 font-bold">
+            <span id="err-msg">{error}</span>
+          </div>
           <button onClick={handleSignIn}>Login</button>
           <button onClick={handleGoogle}>
             <FcGoogle />
