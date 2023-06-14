@@ -21,20 +21,13 @@ export function AuthProvider({ children }) {
     });
   });
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     setCurrentUser(user);
-  //   });
-  //   return unsubscribe;
-  // }, []);
-
   const signup = async (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
   const login = async (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const signout = async (email, password) => {
+  const signout = async () => {
     return signOut(auth);
   };
   const signInWithGoogle = async () => {

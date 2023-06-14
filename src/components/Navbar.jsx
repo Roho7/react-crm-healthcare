@@ -15,19 +15,26 @@ import {
 import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase.js";
 import App from "../App.jsx";
+import { FaHandHoldingHeart } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext.jsx";
 
 function Navbar() {
-  const logOut = async () => {
+  const { signout } = useAuth();
+
+  const handleLogout = async () => {
     try {
-      await signOut(auth);
+      signout(auth);
     } catch (err) {
       console.log(err);
     }
   };
+
   return (
     <div className="flex flex-col justify-between w-1/6 h-screen bg-sky-400 text-lg text-cyan-50 fixed">
       <div>
-        <h1 className="text-3xl m-4 font-bold text-sky-50">HealthMed+</h1>
+        <h1 className="text-3xl m-4 font-bold text-sky-50 flex gap-2 items-center">
+          <FaHandHoldingHeart /> ElderCare+
+        </h1>
       </div>
       <div className="flex flex-col">
         <Link to="/" className="navbar-link">
@@ -56,7 +63,7 @@ function Navbar() {
           <FiUser />
           Profile
         </Link>
-        <Link to="/" className="navbar-link" onClick={logOut}>
+        <Link to="/" className="navbar-link" onClick={handleLogout}>
           <FiLogOut />
           Log Out
         </Link>

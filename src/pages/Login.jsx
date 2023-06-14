@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { FcGoogle } from "react-icons/fc";
+import { FaHandHoldingHeart } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext.jsx";
 
 function Login() {
@@ -47,7 +47,9 @@ function Login() {
 
   return (
     <div className="flex flex-col gap-4 justify-center items-center h-screen bg-sky-50">
-      <h1 className="text-5xl mt-4 font-bold top-10 ">HealthMed+</h1>
+      <h1 className="text-3xl m-4 font-bold text-sky-500 flex gap-2 items-center">
+        <FaHandHoldingHeart /> ElderCare+
+      </h1>
       <div className="container flex flex-col items-center max-w-sm p-10 z-10">
         <h1 className="text-xl font-bold text-sky- mb-4">Login</h1>
         <div className="flex flex-col items-center gap-4 w-full">
