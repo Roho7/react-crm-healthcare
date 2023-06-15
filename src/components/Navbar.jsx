@@ -49,13 +49,13 @@ function Navbar() {
           <FiFileText />
           Reports
         </Link>
-        <Link to="/" className="navbar-link">
+        <Link to="/analytics" className="navbar-link">
           <FiBarChart2 />
-          Progress
+          Analytics
         </Link>
-        <Link to="/" className="navbar-link">
+        <Link to="/reports/patients/bills" className="navbar-link">
           <FiDollarSign />
-          Finances
+          Bills
         </Link>
       </div>
       <div className="flex flex-col">

@@ -6,9 +6,9 @@ import PatientProfile from "./pages/PatientProfile";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { db } from "./config/firebase";
 import { getDocs, collection } from "@firebase/firestore";
-import { AuthProvider } from "./context/AuthContext";
-import PrivateRoute from "./components/PrivateRoute";
 import ReactLoading from "react-loading";
+import PatientBills from "./pages/PatientBills";
+import Analytics from "./pages/Analytics";
 
 function Home() {
   const [loading, setLoading] = useState(false);
@@ -38,11 +38,6 @@ function Home() {
 
   return (
     <>
-      {/* {loading && (
-        <div className="absolute w-screen h-screen bg-sky-100 text-sky-900 text-9xl z-10 flex justify-center items-center">
-          Loading
-        </div>
-      )} */}
       {loading && (
         <div className="absolute w-screen h-screen text-9xl z-10 flex justify-center items-center">
           <ReactLoading type="spin" color="rgb(56 189 248)" />
@@ -60,6 +55,14 @@ function Home() {
             <Route
               path="/reports/patients/:id"
               element={<PatientProfile data={patientData} />}
+            />
+            <Route
+              path="/reports/patients/bills"
+              element={<PatientBills data={patientData} />}
+            />
+            <Route
+              path="/analytics"
+              element={<Analytics data={patientData} />}
             />
           </Routes>
         </div>
