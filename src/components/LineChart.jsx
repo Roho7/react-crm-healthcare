@@ -30,7 +30,7 @@ export function LineChart(props) {
       },
       title: {
         display: true,
-        text: "Chart.js Bar Chart",
+        text: "Patient Admissions By Month",
       },
     },
   };
@@ -71,12 +71,12 @@ export function LineChart(props) {
     labels,
     datasets: [
       {
-        label: "No. of patients",
+        label: "No. of patients admitted ",
         data: monthlyArray.map((month) => month.length),
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
-        label: "Dataset 2",
+        label: "No. of patients discharged",
         //   data: labels.map(() => datatype.number({ min: 0, max: 1000 })),
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },

@@ -5,6 +5,9 @@
 @tailwind utilities;
 
 @layer components {
+  body {
+    overflow-x: hidden;
+  }
   h1 {
     @apply text-sky-900;
   }
@@ -69,6 +72,17 @@
   *::-webkit-scrollbar-thumb {
     background-color: #38bdf8;
     border-radius: 14px;
+  }
+  .background {
+    background-color: hsla(204, 93%, 93%, 1);
+    background-image: radial-gradient(
+        at 0% 40%,
+        hsla(204, 93%, 93%, 1) 0px,
+        transparent 50%
+      ),
+      radial-gradient(at 73% 100%, hsla(288, 100%, 90%, 1) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, #e0f2fe 0px, transparent 50%),
+      radial-gradient(at 14% 17%, #f5d0fe, 0px, transparent 50%);
   }
 }
 

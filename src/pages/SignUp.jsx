@@ -54,11 +54,15 @@ function SignUp() {
   // };
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center h-screen bg-sky-50">
-      <h1 className="text-3xl m-4 font-bold text-sky-500 flex gap-2 items-center">
-        <FaHandHoldingHeart /> ElderCare+
+    <div className="flex flex-col gap-4 justify-center items-center h-screen w-screen overflow-hidden background">
+      <h1 className="text-3xl m-4 font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-fuchsia-500 flex gap-2 items-center">
+        <FaHandHoldingHeart className="text-sky-500" />
+        ElderCare+
       </h1>
-      <div className="container flex flex-col items-center max-w-sm p-10 z-10">
+      <div
+        className="container flex flex-col items-center max-w-sm p-10 z-10 bg-gray-50 bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-60
+"
+      >
         <h1 className="text-xl font-bold text-sky-700 mb-4">
           Create an Account
         </h1>

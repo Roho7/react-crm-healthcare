@@ -17,7 +17,7 @@ function DayCount(props) {
               Admin Permission
             </p>
 
-            <h1 className="text-4xl font-bold text-sky-900">
+            <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-fuchsia-500">
               Total Patients: {patients.length}
             </h1>
             <h1 className=" text-sky-900">
